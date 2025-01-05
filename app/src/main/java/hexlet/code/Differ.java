@@ -4,6 +4,8 @@ import java.util.Map;
 
 public class Differ {
 
+    private static final String DEFAULT_FORMAT = "stylish";
+
     public static String generate(String filepath1, String filepath2, String outputFormat) throws Exception {
         Map<String, Object> map1 = Parser.parse(filepath1);
         Map<String, Object> map2 = Parser.parse(filepath2);
@@ -12,7 +14,6 @@ public class Differ {
     }
 
     public static String generate(String filepath1, String filepath2) throws Exception {
-        String format = "stylish";
-        return generate(filepath1, filepath2, format);
+        return generate(filepath1, filepath2, DEFAULT_FORMAT);
     }
 }

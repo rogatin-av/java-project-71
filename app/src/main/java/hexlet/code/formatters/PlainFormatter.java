@@ -33,7 +33,6 @@ public class PlainFormatter {
                             .append("' was removed\n");
                     break;
                 default:
-                    //
             }
         });
         return sb.toString().trim();

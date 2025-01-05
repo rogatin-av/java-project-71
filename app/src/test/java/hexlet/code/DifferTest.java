@@ -10,9 +10,16 @@ import java.nio.file.Paths;
 
 public class DifferTest {
 
-    private static String stylishFixture;
-    private static String plainFixture;
-    private static String jsonFixture;
+    private static final String PATH_TO_JSON1 = "src/test/resources/file1.json";
+    private static final String PATH_TO_JSON2 = "src/test/resources/file2.json";
+    private static final String PATH_TO_YAML1 = "src/test/resources/file1.yaml";
+    private static final String PATH_TO_YAML2 = "src/test/resources/file2.yaml";
+    private static final String STYILISH_FORMAT = "stylish";
+    private static final String PLAIN_FORMAT = "plain";
+    private static final String JSON_FORMAT = "json";
+    private static String stylish;
+    private static String plain;
+    private static String json;
 
     private static Path getFixturePath(String fileName) {
         return Paths.get("src", "test", "resources", fileName)
@@ -26,86 +33,72 @@ public class DifferTest {
 
     @BeforeAll
     public static void beforeAll() throws Exception {
-        stylishFixture = getFixtureContent("stylish");
-        plainFixture = getFixtureContent("plain");
-        jsonFixture = getFixtureContent("json");
+        stylish = getFixtureContent(STYILISH_FORMAT);
+        plain = getFixtureContent(PLAIN_FORMAT);
+        json = getFixtureContent(JSON_FORMAT);
     }
 
     @Test
     void testJsonToStylish() throws Exception {
-        String filepath1 = "./src/test/resources/file1.json";
-        String filepath2 = "./src/test/resources/file2.json";
-        String format = "stylish";
-        String actual = Differ.generate(filepath1, filepath2, format);
-        String expected = stylishFixture;
+        String actual = Differ.generate(PATH_TO_JSON1, PATH_TO_JSON2, STYILISH_FORMAT);
+        String expected = stylish;
+
         assertEquals(expected, actual);
     }
 
     @Test
     void testJsonToPlain() throws Exception {
-        String filepath1 = "src/test/resources/file1.json";
-        String filepath2 = "src/test/resources/file2.json";
-        String format = "plain";
-        String actual = Differ.generate(filepath1, filepath2, format);
-        String expected = plainFixture;
+        String actual = Differ.generate(PATH_TO_JSON1, PATH_TO_JSON2, PLAIN_FORMAT);
+        String expected = plain;
+
         assertEquals(expected, actual);
     }
 
     @Test
     void testJsonToJson() throws Exception {
-        String filepath1 = "src/test/resources/file1.json";
-        String filepath2 = "src/test/resources/file2.json";
-        String format = "json";
-        String actual = Differ.generate(filepath1, filepath2, format);
-        String expected = jsonFixture;
+        String actual = Differ.generate(PATH_TO_JSON1, PATH_TO_JSON2, JSON_FORMAT);
+        String expected = json;
+
         assertEquals(expected, actual);
     }
 
     @Test
     void testJsonToDefault() throws Exception {
-        String filepath1 = "src/test/resources/file1.json";
-        String filepath2 = "src/test/resources/file2.json";
-        String actual = Differ.generate(filepath1, filepath2);
-        String expected = stylishFixture;
+        String actual = Differ.generate(PATH_TO_JSON1, PATH_TO_JSON2);
+        String expected = stylish;
+
         assertEquals(expected, actual);
     }
 
     @Test
     void testYamlToStylish() throws Exception {
-        String filepath1 = "src/test/resources/file1.yaml";
-        String filepath2 = "src/test/resources/file2.yaml";
-        String format = "stylish";
-        String actual = Differ.generate(filepath1, filepath2, format);
-        String expected = stylishFixture;
+        String actual = Differ.generate(PATH_TO_YAML1, PATH_TO_YAML2, STYILISH_FORMAT);
+        String expected = stylish;
+
         assertEquals(expected, actual);
     }
 
     @Test
     void testYamlToPlain() throws Exception {
-        String filepath1 = "src/test/resources/file1.yaml";
-        String filepath2 = "src/test/resources/file2.yaml";
-        String format = "plain";
-        String actual = Differ.generate(filepath1, filepath2, format);
-        String expected = plainFixture;
+        String actual = Differ.generate(PATH_TO_YAML1, PATH_TO_YAML2, PLAIN_FORMAT);
+        String expected = plain;
+
         assertEquals(expected, actual);
     }
 
     @Test
     void testYamlToJson() throws Exception {
-        String filepath1 = "src/test/resources/file1.yaml";
-        String filepath2 = "src/test/resources/file2.yaml";
-        String format = "json";
-        String actual = Differ.generate(filepath1, filepath2, format);
-        String expected = jsonFixture;
+        String actual = Differ.generate(PATH_TO_YAML1, PATH_TO_YAML2, JSON_FORMAT);
+        String expected = json;
+
         assertEquals(expected, actual);
     }
 
     @Test
     void testYamlToDefault() throws Exception {
-        String filepath1 = "src/test/resources/file1.yaml";
-        String filepath2 = "src/test/resources/file2.yaml";
-        String actual = Differ.generate(filepath1, filepath2);
-        String expected = stylishFixture;
+        String actual = Differ.generate(PATH_TO_YAML1, PATH_TO_YAML2);
+        String expected = stylish;
+
         assertEquals(expected, actual);
     }
 }
