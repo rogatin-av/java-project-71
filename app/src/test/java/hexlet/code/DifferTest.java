@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class DifferTest {
+public final class DifferTest {
 
     private static final String FILE1 = "file1";
     private static final String FILE2 = "file2";
